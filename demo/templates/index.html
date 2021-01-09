@@ -1,0 +1,35 @@
+{% load static %}
+{% static "images" as baseURL %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body >
+    <div>
+        {% if user.is_autheticated %}
+        <li> Hello,{{user.first_name}}</li>
+        <li><a href="account/logout">Logout</a></li> <br/>
+
+        {% else %}
+        <li><a href="account/register">Registration</a></li> <br/>
+        <li><a href="account/login">Login</a></li> <br/>
+        {% endif %}
+
+        {% for d in dest %}
+    	<div>
+            <div>{{d.name}}</div>
+            <div>From ${{d.price}}</div>
+            {%  if d.offer %}
+            <div>Special Offer</div>
+            {% endif %}
+            <img src="{{d.image.url}}" alt="" height="20%" width="20%"/>
+        </div>
+        {% endfor %}
+    
+    </div>    
+</body>
+</html>
